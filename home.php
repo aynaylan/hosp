@@ -1,3 +1,20 @@
+<?php include('server.php');?>
+<?php
+session_start();
+
+if (!isset($_SESSION['Username'])) {
+	$_SESSION['msg']="You must be logged in";
+	header('location:login.php');
+}
+
+
+if (isset($_POST['logout'])) {
+	session_destroy();
+	unset($_SESSION['Username']);
+	# code...
+}
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +32,8 @@
 </head>
 <body>
 	
+
+	
 	<nav class="nav navbar-default">
 
 		<div class="container-fluid">
@@ -26,10 +45,12 @@
 	<div class="collapse navbar-collapse" id="myNavbar">
 		<ul class="nav navbar-nav" >
 	
-			<li><a href="">Patients</a></li>
+			<li><a href="patients.php">Patients</a></li>
 			<li><a href="">Pharmarcy</a></li>
 			<li><a href="#test">Testimonials</a></li>
 			<li><a href="#contactus">Contact us</a></li>
+			<li><a href="home.php?logout='1'">Logout</a></li>
+
 		</ul>
 		</div>
 
@@ -39,6 +60,11 @@
 
 		
 	</nav>
+
+
+
+
+	
 
 	<div class="row" >
 			<center><h1 style="color: white;">Our facilities</h1></center>

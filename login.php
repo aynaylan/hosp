@@ -1,3 +1,4 @@
+<?php include('server.php');?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,17 +16,28 @@
 <body>
 	
 	<div id="fmcont">
-	<form id="f1" class="form form-group">
-		<i class="fa fa-user-md" style="font-size:3em;"></i>
-		<h1>Login</h1>
+
+	<form  method="post" action="login.php" id="f1" class="form form-group">
+	<?php include('errors.php') ?>
+			<i class="fa fa-user-md" style="font-size:3em;"></i>
+			<h1>Login</h1>
+
+	<input type="text" name="Username" placeholder="Username">
+
+	<br>
+	<br>
+
+	
+	<input type="password" name="password" placeholder="Password ">
+
 		<br>
-		<input type="email" name="mail" placeholder="Email">
-		<br><br>
-		<input type="password" name="pswd" placeholder="Password ">
 		<br>
-		Am a Doctor<input type="checkbox" name="">
-		<br><br>
-		<button class="btn btn-primary">Login</button>
+
+	<button type="submit" name="login"   class="btn btn-primary">Login</button> 
+	<center><p>Not a member?<a href="register.php">Register</a></p></center>
+
+
+
 	</form>
 	</div>
 
