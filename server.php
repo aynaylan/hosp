@@ -153,7 +153,8 @@ if (isset($_POST['add_pat'])) {
 
 	 if (count($errors)==0)
 		{ 
-		  $q1="INSERT INTO `patients` (`ID`, `REF`, `NAME`, `AGE`, `WEIGHT`, `TEMPERATURE`, `COMPLICATIONS`) VALUES (NULL, '$ref', '$name', '$age', '$weight', '$temp', '$comp');";
+			$vstd=date("h:i:sa d/m/Y ");
+		  $q1="INSERT INTO `patients` (`ID`, `REF`, `NAME`, `AGE`, `WEIGHT`, `TEMPERATURE`, `COMPLICATIONS`) VALUES (NULL, '$ref', '$name', '$age', '$weight', '$temp', '$comp','$vstd');";
 		  mysqli_query($db,$q1);
 
 		}
@@ -168,7 +169,25 @@ if (isset($_POST['add_pat'])) {
 
 //form validation to proceed to the pharmacy
 if (isset($_POST['proc_pharm'])) {
+	$refno=mysqli_real_escape_string($db,$_POST['ref']);
+
+	$med=mysqli_real_escape_string($db,$_POST['medication']);
+	$vstd=date("h:i d/m/Y ");
+
+	if (empty($refno)) 
+	{array_push($errors, "Select a Reference number from the table above");}
+if (empty($med)) 
+	{array_push($errors, "The patient needs medication to proceed to the pharmacy");}
+	
 	# code...
+	else{
+		$subpat="INSERT INTO `Pharmacy` (`ID`, `REF`, `MEDICATION`, `VISITDATE`) VALUES (NULL, '$refno', '$med', '$vstd')";
+		mysqli_query($db,$subpat);
+		echo "<span style='color:white;'>The patient will be called by the pharmasist to pick the medication</span>";
+
+	}
+	
 }
+
 
 ?>   

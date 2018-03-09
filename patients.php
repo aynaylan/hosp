@@ -21,16 +21,16 @@
 		<div class="container-fluid">
 	
 			<div class="navbar-header">
-					<button class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="">Naylan</a>
+					<button class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="home.php">Naylan</a>
 			</div>
 
 	<div class="collapse navbar-collapse" id="myNavbar">
 		<ul class="nav navbar-nav" >
 	
-			<li><a href="">Pharmarcy</a></li>
-			<li><a href="#test">Testimonials</a></li>
+			<li><a href="pharmacy.php">Pharmarcy</a></li>
+			<li><a href="home.php#test">Testimonials</a></li>
 			<li><a href="doctors.php">Doctor's Panel</a></li>
-			<li><a href="#contactus">Contact us</a></li>
+			<li><a href="home.php#contactus">Contact us</a></li>
 			<li><a href="home.php?logout='1'">Logout</a></li>
 
 		</ul>
@@ -45,7 +45,6 @@
 
 
 
-	<div id="newpat">
 
 		<div id="fmcont">
 			<h1>New Patient</h1>
@@ -60,10 +59,10 @@
 			<textarea placeholder="Complications" name="comp" style="color:black;"></textarea><br>
 			<button type="submit" class="btn btn-success" name="add_pat">Add Patient</button> 
 
-			<a href="doctors.php"><button href="doctors.php" class="btn btn-success">Doctors Panel</button></a>
+			<a href="doctors.php">Doctors Panel</a>
 		</form>
 	</div>
-	</div>
+	
 	
 </body>
 </html>

@@ -46,9 +46,9 @@ if (isset($_POST['logout'])) {
 		<ul class="nav navbar-nav" >
 	
 			<li><a href="patients.php">Patients</a></li>
-			<li><a href="">Pharmarcy</a></li>
-			<li><a href="#test">Testimonials</a></li>
-			<li><a href="#contactus">Contact us</a></li>
+			<li><a href="pharmacy.php">Pharmarcy</a></li>
+			<li><a href="home.php#test">Testimonials</a></li>
+			<li><a href="home.php#contactus">Contact us</a></li>
 			<li><a href="home.php?logout='1'">Logout</a></li>
 
 		</ul>

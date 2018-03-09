@@ -1,4 +1,20 @@
 <?php include('server.php');?>
+<?php
+session_start();
+
+if (!isset($_SESSION['Username'])) {
+	$_SESSION['msg']="You must be logged in";
+	header('location:login.php');
+}
+
+
+if (isset($_POST['logout'])) {
+	session_destroy();
+	unset($_SESSION['Username']);
+	# code...
+}
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,9 +25,9 @@
 	<script type="text/javascript" src="custom.js"></script>
 
 	<script type="text/javascript" src="js/bootstrap.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<!--Font awesome-->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!--Font awesome -->
 </head>
 <body>
 	<nav class="nav navbar-default">
@@ -19,14 +35,14 @@
 		<div class="container-fluid">
 	
 			<div class="navbar-header">
-						<button class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="home.php">Naylan</a>
+					<button class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="home.php">Naylan</a>
 			</div>
 
 	<div class="collapse navbar-collapse" id="myNavbar">
 		<ul class="nav navbar-nav" >
 	
-			<li><a href="">Pharmarcy</a></li>
-			<li><a href="#test">Testimonials</a></li>
+			<li><a href="patients.php">Patients</a></li>
+			<li><a href="home.php#test">Testimonials</a></li>
 			<li><a href="home.php#contactus">Contact us</a></li>
 			<li><a href="home.php?logout='1'">Logout</a></li>
 
@@ -41,25 +57,28 @@
 	</nav>
 
 
+	
+	
+
+	
 	<div id="fmcont">
 			<h1>Patients</h1>
+			<?php echo "The time is " . date("h:i:sa d/m/Y ");?>
 			<div class="table-responsive">
 			<table style="color: white;" class="table table-bordered table-condensed">
 				<tr>
 
 			<th>Reference</th>
-			<th> Names</th>
-			<th>Age</th>
-			<th>Weight</th>
-			<th>Temperature</th>
-			<th>Complications</th>
+			<th>Medicine</th>
+			<th>Date Prescribed</th>
+			
 			
 			</tr>
 				<?php
 
 	    $db=mysqli_connect('localhost','root','','Hospitali'); 
 
-		$fetch=mysqli_query($db,"SELECT * FROM patients");
+		$fetch=mysqli_query($db,"SELECT * FROM Pharmacy");
 
 		while ($row=mysqli_fetch_assoc($fetch)) {
 			extract($row);
@@ -70,11 +89,8 @@
 
 			<tr>
 			<td>$REF</td>
-			<td>$NAME</td>
-			<td>$AGE</td>
-			<td>$WEIGHT</td>
-			<td>$TEMPERATURE</td>
-			<td>$COMPLICATIONS</td>
+			<td>$MEDICATION</td>
+			<td>$VISITDATE</td>
 			</tr>
 
 
@@ -85,18 +101,7 @@
 		?>
 			</table>
 </div>
-				<div id="fmcont">
-			<form class="form form-group" action="doctors.php" method="post">
-			
-				 
-		 <input class="form-control" type="text" name="ref" placeholder="Select Reference Number">
-		 <textarea class="form-control" name="medication" style="color: black;" placeholder="Suggest Medication"></textarea><br>
-		 <?php include('errors.php') ?>
-				<button class="btn btn-success" name="proc_pharm">Proceed to Pharmacy</button>
-			</form>
-		</div>
-		
-	</div>
 
+	
 </body>
 </html>
