@@ -26,12 +26,25 @@ if (isset($_POST['login']))
 		{
 			$password=md5($password);
 			$query="SELECT * FROM User WHERE USERNAME='$username' AND PASSWORD='$password'";
+
 			$results= mysqli_query($db,$query);
+			$occ=mysqli_fetch_assoc($results);
+			extract($occ);
 			if (mysqli_num_rows($results)==1)
 			{
-				$_SESSION['Username']=$username;
-				$_SESSION['success']="Successful Login";
-				header('location:home.php');
+
+				if ($OCCUPATION == "Doctor") {
+					header('location:doctors.php');
+				}
+				if ($OCCUPATION == "Nurse") {
+					header('location:patients.php');
+				}
+				if ($OCCUPATION == "Patient") {
+					header('location:pat.php');
+				}
+
+				
+
 			} else {
 				array_push($errors, "Wrong Combo");
 			}	
@@ -107,6 +120,8 @@ if($bb)
 
 
 
+
+
 //Add a new patient inthe database
 if (isset($_POST['add_pat'])) {
 
@@ -154,7 +169,7 @@ if (isset($_POST['add_pat'])) {
 	 if (count($errors)==0)
 		{ 
 			$vstd=date("h:i:sa d/m/Y ");
-		  $q1="INSERT INTO `patients` (`ID`, `REF`, `NAME`, `AGE`, `WEIGHT`, `TEMPERATURE`, `COMPLICATIONS`) VALUES (NULL, '$ref', '$name', '$age', '$weight', '$temp', '$comp','$vstd');";
+		  $q1="INSERT INTO `patients` (`ID`, `REF`, `NAME`, `AGE`, `WEIGHT`, `TEMPERATURE`, `COMPLICATIONS`) VALUES (NULL, '$ref', '$name', '$age', '$weight', '$temp', '$comp');";
 		  mysqli_query($db,$q1);
 
 		}
@@ -165,6 +180,14 @@ if (isset($_POST['add_pat'])) {
 }
 
 
+if (isset($_GET['id']))
+ {
+	extract($_GET);
+	mysqli_query($db,"DELETE from Pharmacy where ID=$id");
+	header('location:pharmacy.php');
+
+	# code...
+ }
 
 
 //form validation to proceed to the pharmacy
@@ -182,8 +205,10 @@ if (empty($med))
 	# code...
 	else{
 		$subpat="INSERT INTO `Pharmacy` (`ID`, `REF`, `MEDICATION`, `VISITDATE`) VALUES (NULL, '$refno', '$med', '$vstd')";
-		mysqli_query($db,$subpat);
-		echo "<span style='color:white;'>The patient will be called by the pharmasist to pick the medication</span>";
+		
+		mysqli_query($db,"DELETE FROM `patients` WHERE `patients`.`ID` = $refno ");
+		$delpatdoc="";
+			echo "<span style='color:white;'>The patient will be called by the pharmasist to pick the medication</span>";
 
 	}
 	

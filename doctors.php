@@ -25,10 +25,10 @@
 	<div class="collapse navbar-collapse" id="myNavbar">
 		<ul class="nav navbar-nav" >
 	
-			<li><a href="">Pharmarcy</a></li>
-			<li><a href="#test">Testimonials</a></li>
+			<li><a href="pharmacy.php">Pharmarcy</a></li>
+			<li><a href="home.php#test">Testimonials</a></li>
 			<li><a href="home.php#contactus">Contact us</a></li>
-			<li><a href="home.php?logout='1'">Logout</a></li>
+			<li><a href="logout.php">Logout</a></li>
 
 		</ul>
 		</div>
@@ -75,6 +75,7 @@
 			<td>$WEIGHT</td>
 			<td>$TEMPERATURE</td>
 			<td>$COMPLICATIONS</td>
+
 			</tr>
 
 

@@ -1,20 +1,21 @@
-<?php include('server.php');?>
 <?php
-session_start();
+//connect the connection page
+include('server.php');
+if(empty($_SESSION)) // if the session not yet started
+   session_start();
 
-if (!isset($_SESSION['Username'])) {
-	$_SESSION['msg']="You must be logged in";
-	header('location:login.php');
+if(!isset($_SESSION['Username'])) { //if not yet logged in
+   header("Location: login.php");// send to login page
+   exit;
 }
-
 
 if (isset($_POST['logout'])) {
 	session_destroy();
 	unset($_SESSION['Username']);
 	# code...
 }
-
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +50,7 @@ if (isset($_POST['logout'])) {
 			<li><a href="pharmacy.php">Pharmarcy</a></li>
 			<li><a href="home.php#test">Testimonials</a></li>
 			<li><a href="home.php#contactus">Contact us</a></li>
-			<li><a href="home.php?logout='1'">Logout</a></li>
+			<li><a href="logout.php">Logout</a></li>
 
 		</ul>
 		</div>

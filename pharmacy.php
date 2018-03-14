@@ -44,7 +44,7 @@ if (isset($_POST['logout'])) {
 			<li><a href="patients.php">Patients</a></li>
 			<li><a href="home.php#test">Testimonials</a></li>
 			<li><a href="home.php#contactus">Contact us</a></li>
-			<li><a href="home.php?logout='1'">Logout</a></li>
+			<li><a href="logout.php">Logout</a></li>
 
 		</ul>
 		</div>
@@ -91,6 +91,7 @@ if (isset($_POST['logout'])) {
 			<td>$REF</td>
 			<td>$MEDICATION</td>
 			<td>$VISITDATE</td>
+			<td><a href='server.php?id=$ID'>Check out</a></td>
 			</tr>
 
 
