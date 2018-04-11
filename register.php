@@ -20,7 +20,7 @@
 
 
 	<form method="post" action="register.php" id="f1" class="form form-group">
-			<?php include('errors.php') ?>
+			<?php include('errors.php'); ?>
 			<i class="fa fa-user-md" style="font-size:3em;"></i>
 			<h1>Register</h1>
 
